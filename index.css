@@ -21,6 +21,7 @@ html, body {
 }
 
 .main__colorscheme-button {
+	display: none;
 	height: 40px;
 	width: 40px;
 
@@ -31,7 +32,7 @@ html, body {
 }
 
 .main__title {
-	margin-top: 15px;
+	margin-top: calc(15px + 98px);
 	margin-bottom: 0;
 
 	font-family: "Montserrat";
