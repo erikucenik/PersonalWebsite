@@ -11,6 +11,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
 	<script>hljs.highlightAll();</script>
 
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="article.css">
 	<script src="article.js" defer></script>
 </head>
@@ -32,20 +35,18 @@
 		<p class="article__p">Determinar cómo de brillante es un punto del toro es conceptualmente sencillo, aunque algo largo visto en código. En esencia, dadas las coordenadas de una fuente de luz, el ángulo que forme el vector normal de una superficie con el vector que la une con dicha fuente determinará la luminosidad. De nuevo, suena más complicado de lo que realmente es. Lo que estamos midiendo es cómo de perpendicular es la superficie a la fuente de luz: si la encara totalmente, alcanzará su máximo brillo, si está ligeramente inclinada, no será tan intenso, y si "se dan la espalda", el brillo será nulo.</p>
 
 		<ul class="article__ul">
-			<li class="article__li">El cabron de Osuna está mintiendo no joda.</li>
-			<li class="article__li">Hijuelagranputa cabalgame sobre esta.</li>
-			<li class="article__li">El tercer paso es incluir la mezcla de clorefedrina en un matraz volumétrico.</li>
+			<li class="article__li">Por si alguien está leyendo esto en un futuro</li>
+			<li class="article__li">La forma en que decido qué textos poner de ejemplo</li>
+			<li class="article__li">Es normalmente escribir lo primero que se me ocurra.</li>
 		</ul>
 
-		<p class="article__p">Empecemos primero por obtener la normal a la superficie del toro dado un punto `toro(alpha, beta)`. Si imaginamos desplazarnos un pequeño paso en alpha (es decir, `toro(alpha + da, beta)`), estaremos en un nuevo punto. Cabe notar que si damos el mismo paso pero en beta (es decir, `toro(alpha, beta + db)`), nos moveremos perpendicularmente respecto de la dirección anterior. Esto es valioso, pues con ambas direcciones definimos un plano tangente a la superficie del toro, y obtener la normal de este plano es sencillo.</p>
+		<p class="article__p">Empecemos primero por obtener la normal a la superficie del toro dado un punto <code class="article__codeline">toro(alpha, beta)</code>. Si imaginamos desplazarnos un pequeño paso en alpha (es decir, `toro(alpha + da, beta)`), estaremos en un nuevo punto. Cabe notar que si damos el mismo paso pero en beta (es decir, `toro(alpha, beta + db)`), nos moveremos perpendicularmente respecto de la dirección anterior. Esto es valioso, pues con ambas direcciones definimos un plano tangente a la superficie del toro, y obtener la normal de este plano es sencillo.</p>
 
 		<ol class="article__ol">
-			<li class="article__li">El cabron de Osuna está mintiendo no joda.</li>
-			<li class="article__li">Hijuelagranputa cabalgame sobre esta.</li>
-			<li class="article__li">El tercer paso es incluir la mezcla de clorefedrina en un matraz volumétrico.</li>
-		</ol>
-
-		
+			<li class="article__li">Por si alguien está leyendo esto en un futuro</li>
+			<li class="article__li">La forma en que decido qué textos poner de ejemplo</li>
+			<li class="article__li">Es normalmente escribir lo primero que se me ocurra.</li>
+		</ol>	
 
 		<section class="codeblock-window">
 			<section class="codeblock-window__bar">
@@ -63,6 +64,28 @@
 			</section>
 		</section>
 
+		<p class="article__p">Empecemos primero por obtener la normal a la superficie del toro dado un punto <code class="article__codeline">toro(alpha, beta)</code>. Si imaginamos desplazarnos un pequeño paso en alpha (es decir, `toro(alpha + da, beta)`), estaremos en un nuevo punto. Cabe notar que si damos el mismo paso pero en beta (es decir, `toro(alpha, beta + db)`), nos moveremos perpendicularmente respecto de la dirección anterior. Esto es valioso, pues con ambas direcciones definimos un plano tangente a la superficie del toro, y obtener la normal de este plano es sencillo.</p>
+		
+		<figure class="figure">
+			<img class="figure__image" src="media/sample_image.png">
+			<figcaption class="figure__caption">(Figura 1) El hombre más sexy de toda la Península.</figcaption>
+		</figure>
+
+		<p class="article__p">Empecemos primero por obtener la normal a la superficie del toro dado un punto <code class="article__codeline">toro(alpha, beta)</code>. Si imaginamos desplazarnos un pequeño paso en alpha (es decir, `toro(alpha + da, beta)`), estaremos en un nuevo punto. Cabe notar que si damos el mismo paso pero en beta (es decir, `toro(alpha, beta + db)`), nos moveremos perpendicularmente respecto de la dirección anterior. Esto es valioso, pues con ambas direcciones definimos un plano tangente a la superficie del toro, y obtener la normal de este plano es sencillo.</p>
+
+		<iframe class="article__iframe" width="560" height="315" src="https://www.youtube-nocookie.com/embed/G9rIdj1lyJ4?si=5YZQk7mrAsZwoQIL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+		<p class="article__p">Empecemos primero por obtener la normal a la superficie del toro dado un punto <code class="article__codeline">toro(alpha, beta)</code>. Si imaginamos desplazarnos un pequeño paso en alpha (es decir, `toro(alpha + da, beta)`), estaremos en un nuevo punto. Cabe notar que si damos el mismo paso pero en beta (es decir, `toro(alpha, beta + db)`), nos moveremos perpendicularmente respecto de la dirección anterior. Esto es valioso, pues con ambas direcciones definimos un plano tangente a la superficie del toro, y obtener la normal de este plano es sencillo.</p>
+
+		<section class="download">
+			<img class="download__icon" src="media/cloud.png"/>
+			<p class="download__filename">ProyectoExcelenciaBachiller.pdf</p>
+			<a href="media/cloud.png" class="download__square" download><img class="download__icon" src="media/download.png"/></a>
+		</section>		
+
+		<p class="article__p">Empecemos primero por obtener la normal a la superficie del toro dado un punto <code class="article__codeline">toro(alpha, beta)</code>. Si imaginamos desplazarnos un pequeño paso en alpha (es decir, `toro(alpha + da, beta)`), estaremos en un nuevo punto. Cabe notar que si damos el mismo paso pero en beta (es decir, `toro(alpha, beta + db)`), nos moveremos perpendicularmente respecto de la dirección anterior. Esto es valioso, pues con ambas direcciones definimos un plano tangente a la superficie del toro, y obtener la normal de este plano es sencillo.</p>
+
+		<p class="article__p">Resulta que si \(\vec{B}\) es el campo magnético y \(\vec{dS}\) es el vector normal a la superficie del solenoide, entonces se cumple que: \[\int{\vec{B}(t)\cdot\vec{dS}} = \phi(t)\]</p>
 	</main>
 
 	<footer class="main__footer">

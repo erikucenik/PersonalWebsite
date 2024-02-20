@@ -106,13 +106,15 @@ html, body {
 
 .codeblock-window {
 	margin: 0;
-	width: 100%;
+	width: 80%;
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
 	box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.35);
 	padding-right: 17px;
 	padding-left: 17px;
+	margin-bottom: 60px;
+	align-self: center;
 }
 
 .codeblock-window__bar {
@@ -145,4 +147,78 @@ pre code.hljs {
 	font-family: "Cascadia Mono";
 	font-weight: 400;
 	font-size: 25px;
+}
+
+.article__codeline {
+	background-color: #f0f0f0;
+	font-size: 28px;
+}
+
+.figure {
+	width: 100%;
+	margin: 0;
+	margin-bottom: 60px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.figure__image {
+	width: 70%;
+	margin: 0;
+	margin-bottom: 15px;
+	border-radius: 10px;
+}
+
+.figure__caption {
+	font-family: "Roboto";
+	font-size: 32px;
+	font-weight: 300;
+	text-align: center;
+}
+
+.article__iframe {
+	align-self: center;
+	border-radius: 10px;
+	margin-bottom: 60px;
+}
+
+.download {
+	margin-bottom: 60px;
+	box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.35);
+	border-radius: 10px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 20px;
+	align-self: center;
+	width: 70%;
+}
+
+.download__icon { user-select: none; }
+.download__filename {
+	font-family: "Roboto";
+	font-size: 28px;
+	font-weight: 300;
+	margin: 0;
+	margin-left: 16px;
+}
+
+.download__square {
+	width: 67px;
+	height: 68px;
+	background-color: #45D900;
+	margin-left: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.download__square:active {
+	box-shadow: inset 4px 4px 0 0 rgba(0,0,0,0.25);
 }
