@@ -41,7 +41,7 @@ html, body {
 	text-align: left;
 }
 
-.article__header {
+.article__header, .article__subheader{
 	margin-top: 0;
 	margin-bottom: 60px;
 	font-family: "Montserrat";
@@ -49,23 +49,51 @@ html, body {
 	text-align: left;
 }
 
-h1.article__header {
-
+.article__header {
 	font-size: 64px;
 }
 
-h2.article__header {
+.article__subheader {
 	font-size: 48px;
 }
 
-.article__p {
+.article__p, .article__li {
 	margin-top: 0;
-	margin-bottom: 60px;
 
 	font-family: "Roboto";
 	font-size: 32px;
 	font-weight: 300;
 	text-align: left;
+}
+
+.article__li {
+	margin-bottom: 15px;
+}
+
+.article__p {
+	margin-bottom: 60px;
+}
+
+.article__ol, .article__ul {
+	margin-bottom: 60px;
+	margin-left: 30px;
+	margin-right: 10px;
+}
+
+
+.article__a:link { 
+	color: inherit;
+	text-decoration: underline dotted;
+	transition: 0.5s;
+}
+
+.article__a:hover {
+	text-decoration: underline 3px;
+}
+
+.article__a:visited {
+	color: inherit;
+	text-decoration: underline solid;
 }
 
 .main__footer {
@@ -76,3 +104,45 @@ h2.article__header {
 	background-color: darkslategrey;
 }
 
+.codeblock-window {
+	margin: 0;
+	width: 100%;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.35);
+	padding-right: 17px;
+	padding-left: 17px;
+}
+
+.codeblock-window__bar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+}
+
+.codeblock-window__name {
+	font-family: "Cascadia Mono";
+	font-weight: 200;
+	font-size: 24px;
+	margin: 0;
+}
+
+.codeblock-window__codespace {
+	padding-left: 28px;
+	padding: 14px;
+}
+
+.codeblock-window__pre { margin: 0; }
+
+pre code.hljs {
+	padding: 0;
+}
+.codeblock-window__code {
+	padding: 0;
+	font-family: "Cascadia Mono";
+	font-weight: 400;
+	font-size: 25px;
+}
