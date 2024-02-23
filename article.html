@@ -22,32 +22,28 @@
 	<main class="main">
 		<a class="main__colorscheme-button" href="index.html"><img src="media/home.png"/></a>
 		<h1 class="main__title">Código con forma de donut que produce un donut.</h1>
-
+		<!-- # Heading -->
 		<h1 class="article__header">1 El Donut</h1>
-
-		<p class="article__p">Hay una imagen que ha rondado mi cabeza desde que la vi hace años. <a class="article__a" href="https://www.youtube.com/watch?v=DEqXNfs_HhY">"Donut-shaped C code that generates a 3D spinning donut - Lex Fridman"</a> fue, si no me equivoco, el vídeo donde la vi por primera vez. Durante mucho tiempo esta pieza de código me antojaba mágica. <b>Incluso tras deshacer</b> su forma toroidal me resultaba imposible interpretar ese conjunto caótico de variables sin significado semántico. Nunca llegué a darle la importancia ni la atención que merecía, pues pensaba que era simplemente un juego intelectual entre programadores.</p>
-
-		<p class="article__p">Hace dos días sin embargo me obsesioné con el tema, y tras unas tres tardes de álgebra lineal y Python, vi que conceptualmente era en realidad <i>sorprendentemente sencillo</i>. El objetivo de este texto no es replicar exactamente el código original, sino más bien explicar cómo se puede llegar hasta algo similar de manera que cada paso resulte evidente por sí mismo.</p>
-
-		<p class="article__p">El objetivo final es sencillo: mostrar un donut tridimensional bailando en la terminal. Atacar un problema así partiendo desde la perspectiva de los algoritmos tiende a resultar en código enrevesado o ineficiente, así que vamos a trabajar como si los ordenadores no existiesen - con matemáticas. Podemos descomponer el problema en otros cinco bastante más sencillos.</p>
-
 		<h2 class="article__subheader">1.2 La Luz</h2>
-		<p class="article__p">Determinar cómo de brillante es un punto del toro es conceptualmente sencillo, aunque algo largo visto en código. En esencia, dadas las coordenadas de una fuente de luz, el ángulo que forme el vector normal de una superficie con el vector que la une con dicha fuente determinará la luminosidad. De nuevo, suena más complicado de lo que realmente es. Lo que estamos midiendo es cómo de perpendicular es la superficie a la fuente de luz: si la encara totalmente, alcanzará su máximo brillo, si está ligeramente inclinada, no será tan intenso, y si "se dan la espalda", el brillo será nulo.</p>
 
+		<p class="article__p">Hay una imagen que ha rondado mi cabeza desde que la vi hace años. <a class="article__a" href="https://www.youtube.com/watch?v=DEqXNfs_HhY">"Donut-shaped C code that generates a 3D spinning donut - Lex Fridman"</a> fue, si no me equivoco, el vídeo donde la vi por primera vez. Durante mucho tiempo esta pieza de código me antojaba mágica. <b>Incluso tras deshacer</b> su forma toroidal me resultaba imposible <i>interpretar ese conjunto</i> caótico de variables sin significado semántico. Nunca llegué a darle la <code class="article__codeline">importancia</code> ni la atención que merecía, pues pensaba que era simplemente un juego intelectual entre programadores.</p>
+
+
+		<!-- - Item -->
 		<ul class="article__ul">
 			<li class="article__li">Por si alguien está leyendo esto en un futuro</li>
 			<li class="article__li">La forma en que decido qué textos poner de ejemplo</li>
 			<li class="article__li">Es normalmente escribir lo primero que se me ocurra.</li>
 		</ul>
 
-		<p class="article__p">Empecemos primero por obtener la normal a la superficie del toro dado un punto <code class="article__codeline">toro(alpha, beta)</code>. Si imaginamos desplazarnos un pequeño paso en alpha (es decir, `toro(alpha + da, beta)`), estaremos en un nuevo punto. Cabe notar que si damos el mismo paso pero en beta (es decir, `toro(alpha, beta + db)`), nos moveremos perpendicularmente respecto de la dirección anterior. Esto es valioso, pues con ambas direcciones definimos un plano tangente a la superficie del toro, y obtener la normal de este plano es sencillo.</p>
-
+		<!-- 1. Item -->
 		<ol class="article__ol">
 			<li class="article__li">Por si alguien está leyendo esto en un futuro</li>
 			<li class="article__li">La forma en que decido qué textos poner de ejemplo</li>
 			<li class="article__li">Es normalmente escribir lo primero que se me ocurra.</li>
 		</ol>	
 
+		<!-- ``` code ``` -->
 		<section class="codeblock-window">
 			<section class="codeblock-window__bar">
 				<img class="codeblock-window__buttons" src="media/window_buttons.png"/>
@@ -63,29 +59,27 @@
 				</code></pre>
 			</section>
 		</section>
-
-		<p class="article__p">Empecemos primero por obtener la normal a la superficie del toro dado un punto <code class="article__codeline">toro(alpha, beta)</code>. Si imaginamos desplazarnos un pequeño paso en alpha (es decir, `toro(alpha + da, beta)`), estaremos en un nuevo punto. Cabe notar que si damos el mismo paso pero en beta (es decir, `toro(alpha, beta + db)`), nos moveremos perpendicularmente respecto de la dirección anterior. Esto es valioso, pues con ambas direcciones definimos un plano tangente a la superficie del toro, y obtener la normal de este plano es sencillo.</p>
 		
+		<!-- ![caption](figure) -->
 		<figure class="figure">
 			<img class="figure__image" src="media/sample_image.png">
 			<figcaption class="figure__caption">(Figura 1) El hombre más sexy de toda la Península.</figcaption>
 		</figure>
 
-		<p class="article__p">Empecemos primero por obtener la normal a la superficie del toro dado un punto <code class="article__codeline">toro(alpha, beta)</code>. Si imaginamos desplazarnos un pequeño paso en alpha (es decir, `toro(alpha + da, beta)`), estaremos en un nuevo punto. Cabe notar que si damos el mismo paso pero en beta (es decir, `toro(alpha, beta + db)`), nos moveremos perpendicularmente respecto de la dirección anterior. Esto es valioso, pues con ambas direcciones definimos un plano tangente a la superficie del toro, y obtener la normal de este plano es sencillo.</p>
-
+		<!-- [](iframe) -->
 		<iframe class="article__iframe" width="560" height="315" src="https://www.youtube-nocookie.com/embed/G9rIdj1lyJ4?si=5YZQk7mrAsZwoQIL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-		<p class="article__p">Empecemos primero por obtener la normal a la superficie del toro dado un punto <code class="article__codeline">toro(alpha, beta)</code>. Si imaginamos desplazarnos un pequeño paso en alpha (es decir, `toro(alpha + da, beta)`), estaremos en un nuevo punto. Cabe notar que si damos el mismo paso pero en beta (es decir, `toro(alpha, beta + db)`), nos moveremos perpendicularmente respecto de la dirección anterior. Esto es valioso, pues con ambas direcciones definimos un plano tangente a la superficie del toro, y obtener la normal de este plano es sencillo.</p>
-
+		<!-- [](download) -->
 		<section class="download">
 			<img class="download__icon" src="media/cloud.png"/>
 			<p class="download__filename">ProyectoExcelenciaBachiller.pdf</p>
 			<a href="media/cloud.png" class="download__square" download><img class="download__icon" src="media/download.png"/></a>
 		</section>		
 
-		<p class="article__p">Empecemos primero por obtener la normal a la superficie del toro dado un punto <code class="article__codeline">toro(alpha, beta)</code>. Si imaginamos desplazarnos un pequeño paso en alpha (es decir, `toro(alpha + da, beta)`), estaremos en un nuevo punto. Cabe notar que si damos el mismo paso pero en beta (es decir, `toro(alpha, beta + db)`), nos moveremos perpendicularmente respecto de la dirección anterior. Esto es valioso, pues con ambas direcciones definimos un plano tangente a la superficie del toro, y obtener la normal de este plano es sencillo.</p>
-
-		<p class="article__p">Resulta que si \(\vec{B}\) es el campo magnético y \(\vec{dS}\) es el vector normal a la superficie del solenoide, entonces se cumple que: \[\int{\vec{B}(t)\cdot\vec{dS}} = \phi(t)\]</p>
+		<!-- $ latex $ -->
+		<p class="article__p">Si \(\vec{B}\) es el campo magnético y \(\vec{dS}\) es el normal.</p>
+		<!-- $$ latex $$ -->
+		<p class="article__p">\[\int{\vec{B}(t)\cdot\vec{dS}} = \phi(t)\]</p>
 	</main>
 
 	<footer class="main__footer">
