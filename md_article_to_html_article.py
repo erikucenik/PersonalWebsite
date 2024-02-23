@@ -1,3 +1,4 @@
+import subprocess
 from xml.dom import minidom
 
 def convert_iframes(domtree):
@@ -67,12 +68,18 @@ def convert_downloads(domtree):
             domtree.firstChild.insertBefore(download_section, paragraph)
             domtree.firstChild.removeChild(paragraph)
 
-def convert_codeblocks(domtree):
+def convert_codelines(domtree):
     code_elements = domtree.getElementsByTagName("code")
+
     for code_element in code_elements:
         if code_element.parentNode.tagName != "pre":
             code_element.setAttribute("class", "article__code")
-        else:
+
+def convert_codeblocks(domtree):
+    code_elements = domtree.getElementsByTagName("code")
+
+    for code_element in code_elements:
+        if code_element.parentNode.tagName == "pre":
             create_code_block(domtree, code_element)
 
 def convert_headers(domtree):
@@ -150,29 +157,71 @@ def create_code_block(domtree, code_element):
     codeblock_window.appendChild(codeblock_window_bar)
     codeblock_window.appendChild(codeblock_window_codespace)
 
+def pandoc_format_to_my_style(pandoc_output):
+    domtree = minidom.parseString(pandoc_output)
+
+    for tagname in ["p", "ul", "ol", "li", "a"]:
+        add_styling_class_to_elements(domtree, tagname)
+
+    em2i(domtree)
+    strong2b(domtree)
+    convert_headers(domtree)
+    convert_figures(domtree)
+    convert_codeblocks(domtree)
+    convert_codelines(domtree)
+    convert_iframes(domtree)
+    convert_downloads(domtree)
+
+    # Hack to remove the html and XML tags.
+    my_style_html = domtree.childNodes[0].toprettyxml(newl='\n')
+    my_style_html = my_style_html[:my_style_html.rfind('\n')]
+    my_style_html = my_style_html[:my_style_html.rfind('\n')]
+    my_style_html = my_style_html.split('\n', 1)[1]
+
+    return my_style_html
+
+
 def main(filename):
-    with open(filename, "r") as f:
-        content = f.read()
-        domtree = minidom.parseString(content)
+    pandoc_output = "<html>\n" +  subprocess.run(["pandoc", filename, "-f", "markdown+fenced_code_blocks-auto_identifiers-smart", "-t", "html", "--mathjax", "--no-highlight"], stdout=subprocess.PIPE).stdout.decode("utf-8") + "\n</html>"
+    article_content = pandoc_format_to_my_style(pandoc_output)
 
-        for tagname in ["p", "ul", "ol", "li", "a"]:
-            add_styling_class_to_elements(domtree, tagname)
+    article_html = f"""
+<html>
+<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-        em2i(domtree)
-        strong2b(domtree)
-        convert_headers(domtree)
-        convert_figures(domtree)
-        convert_codeblocks(domtree)
-        convert_iframes(domtree)
-        convert_downloads(domtree)
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/xcode.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+	<!-- and it's easy to individually load additional languages -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+	<script>hljs.highlightAll();</script>
 
-        # Hack to remove the html and the xml tags
-        adapted_html = domtree.childNodes[0].toprettyxml(newl='\n')
-        adapted_html = adapted_html[:adapted_html.rfind('\n')]
-        adapted_html = adapted_html[:adapted_html.rfind('\n')]
-        adapted_html = adapted_html.split('\n', 1)[1]
-        
-        with open("modified.html", "w") as f:
-            f.write(adapted_html)
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-main("./article_from_md.html")
+	<link rel="stylesheet" type="text/css" href="article.css">
+	<script src="article.js" defer></script>
+</head>
+
+<body>
+	<main class="main">
+		<a class="main__colorscheme-button" href="index.html"><img src="media/home.png"/></a>
+		<h1 class="main__title">TITULO</h1>
+        {article_content}
+	</main>
+
+	<footer class="main__footer">
+	</footer>
+</body>
+</html>"""
+    
+    filename_with_html_extension = filename.split(".")[0] + ".html"
+
+    with open(filename_with_html_extension, "w") as f:
+        f.write(article_html)
+
+if __name__ == "__main__":
+    main("article.md")

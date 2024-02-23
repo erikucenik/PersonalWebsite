@@ -1,3 +1,4 @@
+
 <html>
 <head>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,69 +22,116 @@
 <body>
 	<main class="main">
 		<a class="main__colorscheme-button" href="index.html"><img src="media/home.png"/></a>
-		<h1 class="main__title">Código con forma de donut que produce un donut.</h1>
-		<!-- # Heading -->
-		<h1 class="article__header">1 El Donut</h1>
-		<h2 class="article__subheader">1.2 La Luz</h2>
+		<h1 class="main__title">TITULO</h1>
+        	
 
-		<p class="article__p">Hay una imagen que ha rondado mi cabeza desde que la vi hace años. <a class="article__a" href="https://www.youtube.com/watch?v=DEqXNfs_HhY">"Donut-shaped C code that generates a 3D spinning donut - Lex Fridman"</a> fue, si no me equivoco, el vídeo donde la vi por primera vez. Durante mucho tiempo esta pieza de código me antojaba mágica. <b>Incluso tras deshacer</b> su forma toroidal me resultaba imposible <i>interpretar ese conjunto</i> caótico de variables sin significado semántico. Nunca llegué a darle la <code class="article__codeline">importancia</code> ni la atención que merecía, pues pensaba que era simplemente un juego intelectual entre programadores.</p>
+	<h1 class="article__header">1 El Donut</h1>
+	
 
+	<h2 class="article__subheader">1.2 La Luz</h2>
+	
 
-		<!-- - Item -->
-		<ul class="article__ul">
-			<li class="article__li">Por si alguien está leyendo esto en un futuro</li>
-			<li class="article__li">La forma en que decido qué textos poner de ejemplo</li>
-			<li class="article__li">Es normalmente escribir lo primero que se me ocurra.</li>
-		</ul>
+	<p class="article__p">
+		Hay una imagen que ha rondado mi cabeza desde que la vi hace años. 
+		<a href="https%3A%2F%2Fi.redd.it%2Ftsmjkdqqxn741.jpg" class="article__a">&quot;Donut-shaped C code that generates a 3D spinning donut - Lex Fridman&quot;</a>
+		 fue, si no me equivoco, el vídeo donde la vi por primera vez. Durante mucho tiempo esta pieza de código me antojaba mágica. 
+		<strong>Incluso tras deshacer</strong>
+		 su forma toroidal me resultaba imposible 
+		<i>interpretar ese conjunto</i>
+		 caótico de variables sin significado semántico. Nunca llegué a darle la 
+		<code class="article__code">importancia</code>
+		 ni la atención que merecía, pues pensaba que era simplemente un juego intelectual entre programadores.
+	</p>
+	
 
-		<!-- 1. Item -->
-		<ol class="article__ol">
-			<li class="article__li">Por si alguien está leyendo esto en un futuro</li>
-			<li class="article__li">La forma en que decido qué textos poner de ejemplo</li>
-			<li class="article__li">Es normalmente escribir lo primero que se me ocurra.</li>
-		</ol>	
-
-		<!-- ``` code ``` -->
-		<section class="codeblock-window">
-			<section class="codeblock-window__bar">
-				<img class="codeblock-window__buttons" src="media/window_buttons.png"/>
-				<p class="codeblock-window__name">Archivo.html</p>
-			</section>
-			<section class="codeblock-window__codespace">
-				<pre class="codeblock-window__pre"><code class="language-py codeblock-window__code">def get_torus(point, x, y, z):
-	x = cos(x) + np.cos(y) + np.cos(z)
-	y = cos(x) + np.cos(y) + np.cos(z)
-	z = cos(x) + np.cos(y) + np.cos(z)
-
-	return np.array([x, y, z])
-				</code></pre>
-			</section>
-		</section>
+	<ul class="article__ul">
 		
-		<!-- ![caption](figure) -->
-		<figure class="figure">
-			<img class="figure__image" src="media/sample_image.png">
-			<figcaption class="figure__caption">(Figura 1) El hombre más sexy de toda la Península.</figcaption>
-		</figure>
 
-		<!-- [](iframe) -->
-		<iframe class="article__iframe" width="560" height="315" src="https://www.youtube-nocookie.com/embed/G9rIdj1lyJ4?si=5YZQk7mrAsZwoQIL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+		<li class="article__li">Por si alguien está leyendo esto en un futuro</li>
+		
 
-		<!-- [](download) -->
-		<section class="download">
-			<img class="download__icon" src="media/cloud.png"/>
-			<p class="download__filename">ProyectoExcelenciaBachiller.pdf</p>
-			<a href="media/cloud.png" class="download__square" download><img class="download__icon" src="media/download.png"/></a>
-		</section>		
+		<li class="article__li">La forma en que decido qué textos poner de ejemplo.</li>
+		
 
-		<!-- $ latex $ -->
-		<p class="article__p">Si \(\vec{B}\) es el campo magnético y \(\vec{dS}\) es el normal.</p>
-		<!-- $$ latex $$ -->
-		<p class="article__p">\[\int{\vec{B}(t)\cdot\vec{dS}} = \phi(t)\]</p>
+		<li class="article__li">Es normalmente escribir lo primero que se me ocurra.</li>
+		
+
+	</ul>
+	
+
+	<ol type="1" class="article__ol">
+		
+
+		<li class="article__li">Por si alguien está leyendo esto en un futuro</li>
+		
+
+		<li class="article__li">La forma en que decido qué textos poner de ejemplo.</li>
+		
+
+		<li class="article__li">Es normalmente escribir lo primero que se me ocurra.</li>
+		
+
+	</ol>
+	
+
+	<section class="codeblock-window">
+		<section class="codeblock-window__bar">
+			<img class="codeblock-window__buttons" src="media/window_buttons.png"/>
+			<p class="codeblock-window__name">Get_Tourus.py</p>
+		</section>
+		<section class="codeblock-window__codespace">
+			<pre class="codeblock-window__pre">
+				<code class="codeblock-window__code language-py">def get_torus(point, x, y, z):
+    x = cos(x) + np.cos(y) + np.cos(z)
+    y = cos(x) + np.cos(y) + np.cos(z)
+    z = cos(x) + np.cos(y) + np.cos(z)
+
+    return np.array([x, y, z])</code>
+			</pre>
+		</section>
+	</section>
+	
+
+	<figure class="figure">
+		
+
+		<img src="media/sample_image.png" alt="" class="figure__image"/>
+		<figcaption class="figure__caption">(Figura 1) El hombre más sexy de toda la Península.</figcaption>
+		
+
+	</figure>
+	
+
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/G9rIdj1lyJ4?si=-WsROoce34LVQ52Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" class="article__iframe"></iframe>
+	
+
+	<section class="download">
+		<img class="download__icon" src="media/cloud.png"/>
+		<p class="download__filename">cloud.png</p>
+		<a href="media/cloud.png" class="download__square" download="">
+			<img class="download__icon" src="media/download.png"/>
+		</a>
+	</section>
+	
+
+	<p class="article__p">
+		Si 
+		<span class="math inline">\(\vec{B}\)</span>
+		 es el campo magnético y 
+		<span class="math inline">\(\vec{dS}\)</span>
+		 es el normal.
+	</p>
+	
+
+	<p class="article__p">
+		<span class="math display">\[\int{\vec{B}(t)\cdot\vec{dS}} = \phi(t)\]</span>
+	</p>
+	
+
+
 	</main>
 
 	<footer class="main__footer">
 	</footer>
 </body>
 </html>
-
