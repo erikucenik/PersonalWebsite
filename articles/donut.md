@@ -1,3 +1,8 @@
+---
+title: Código con forma de donut que produce un donut.
+subtitle: Código con forma de donut que produce un donut giratorio tridimensional.
+---
+
 # 1 El Donut
 
 ## 1.2 La Luz
@@ -23,11 +28,11 @@ def get_torus(point, x, y, z):
 	return np.array([x, y, z])
 ~~~~
 
-![(Figura 1) El hombre más sexy de toda la Península.](media/sample_image.png)
+![(Figura 1) El hombre más sexy de toda la Península.](/static/media/sample_image.png)
 
 [iframe](https://www.youtube.com/embed/G9rIdj1lyJ4?si=-WsROoce34LVQ52Y)
 
-[download](media/cloud.png)
+[download](/static/media/cloud.png)
 
 Si $\vec{B}$ es el campo magnético y $\vec{dS}$ es el normal.
 

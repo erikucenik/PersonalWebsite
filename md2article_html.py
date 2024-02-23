@@ -46,7 +46,7 @@ def convert_downloads(domtree):
 
             download_img = domtree.createElement("img")
             download_img.setAttribute("class", "download__icon")
-            download_img.setAttribute("src", "media/cloud.png")
+            download_img.setAttribute("src", "/static/media/cloud.png")
             download_section.appendChild(download_img)
 
             filename = link.getAttribute("href").split("/")[-1]
@@ -56,12 +56,12 @@ def convert_downloads(domtree):
             download_section.appendChild(download_p)
 
             download_a = domtree.createElement("a")
-            download_a.setAttribute("href", "media/cloud.png")
+            download_a.setAttribute("href", "/static/media/cloud.png")
             download_a.setAttribute("class", "download__square")
             download_a.setAttribute("download", "")
             download_icon = domtree.createElement("img")
             download_icon.setAttribute("class", "download__icon")
-            download_icon.setAttribute("src", "media/download.png")
+            download_icon.setAttribute("src", "/static/media/download.png")
             download_a.appendChild(download_icon)
             download_section.appendChild(download_a)
 
@@ -139,7 +139,7 @@ def create_code_block(domtree, code_element):
 
     codeblock_window_buttons = domtree.createElement("img")
     codeblock_window_buttons.setAttribute("class", "codeblock-window__buttons")
-    codeblock_window_buttons.setAttribute("src", "media/window_buttons.png")
+    codeblock_window_buttons.setAttribute("src", "/static/media/window_buttons.png")
 
     [filename, code] = code_element.firstChild.toxml().split('\n', 1)
     code_element.firstChild.replaceWholeText(code)
@@ -180,48 +180,8 @@ def pandoc_format_to_my_style(pandoc_output):
 
     return my_style_html
 
-
-def main(filename):
+def md2article_html(filename):
     pandoc_output = "<html>\n" +  subprocess.run(["pandoc", filename, "-f", "markdown+fenced_code_blocks-auto_identifiers-smart", "-t", "html", "--mathjax", "--no-highlight"], stdout=subprocess.PIPE).stdout.decode("utf-8") + "\n</html>"
     article_content = pandoc_format_to_my_style(pandoc_output)
 
-    article_html = f"""
-<html>
-<head>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/xcode.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-	<!-- and it's easy to individually load additional languages -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
-	<script>hljs.highlightAll();</script>
-
-	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-	<link rel="stylesheet" type="text/css" href="article.css">
-	<script src="article.js" defer></script>
-</head>
-
-<body>
-	<main class="main">
-		<a class="main__colorscheme-button" href="index.html"><img src="media/home.png"/></a>
-		<h1 class="main__title">TITULO</h1>
-        {article_content}
-	</main>
-
-	<footer class="main__footer">
-	</footer>
-</body>
-</html>"""
-    
-    filename_with_html_extension = filename.split(".")[0] + ".html"
-
-    with open(filename_with_html_extension, "w") as f:
-        f.write(article_html)
-
-if __name__ == "__main__":
-    main("article.md")
+    return article_content
