@@ -9,3 +9,5 @@ El ergot es un maravilloso hongo.
 
 - Me gusta el ergot.
 - Me gusta el ergot.
+
+[download](/articles_media/lsd/sample_image.png)
