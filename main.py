@@ -25,6 +25,8 @@ def get_article_title_subtitle_and_path(filename, filepath):
 
         return (article_title, article_subtitle, article_path)
 
+if not os.path.exists("articles_html"):
+    os.mkdir("articles_html")
 
 for (filename, filepath) in zip(articles_filenames, articles_filepaths):
     (title, subtitle, path) = get_article_title_subtitle_and_path(filename, filepath)
