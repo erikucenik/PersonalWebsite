@@ -124,6 +124,13 @@ def add_styling_class_to_elements(domtree, tagname):
     for element in elements:
         element.setAttribute("class", f"article__{tagname}")
 
+def convert_links(domtree):
+    elements = domtree.getElementsByTagName("a")
+
+    for element in elements:
+        element.setAttribute("class", f"article__a")
+        element.setAttribute("target", "_blank")
+
 def create_code_block(domtree, code_element):
     pre_element = code_element.parentNode
     language = pre_element.getAttribute("class")
@@ -162,11 +169,12 @@ def create_code_block(domtree, code_element):
 def pandoc_format_to_my_style(pandoc_output):
     domtree = minidom.parseString(pandoc_output)
 
-    for tagname in ["p", "ul", "ol", "li", "a"]:
+    for tagname in ["p", "ul", "ol", "li"]:
         add_styling_class_to_elements(domtree, tagname)
 
     em2i(domtree)
     strong2b(domtree)
+    convert_links(domtree)
     convert_headers(domtree)
     convert_figures(domtree)
     convert_codeblocks(domtree)

@@ -3,9 +3,9 @@ title: Código con forma de donut que produce un donut.
 subtitle: Código con forma de donut que produce un donut tridimensional en rotación.
 ---
 
-Hay una imagen que ha rondado mi cabeza desde que la vi hace años. "Donut-shaped C code that generates a 3D spinning donut" fue, si no me equivoco, el vídeo donde la vi por primera vez. Durante mucho tiempo esta pieza de código me antojaba mágica. Incluso tras deshacer su forma toroidal me resultaba imposible interpretar ese conjunto caótico de variables sin significado semántico. Nunca llegué a darle la importancia ni la atención que merecía, pues pensaba que era simplemente un juego intelectual entre programadores.
+Hay una imagen que ha rondado mi cabeza desde que la vi hace años. ["Donut-shaped C code that generates a 3D spinning donut"](https://www.youtube.com/watch?v=DEqXNfs_HhY) fue, si no me equivoco, el vídeo donde la vi por primera vez. Durante mucho tiempo esta pieza de código me antojaba mágica. Incluso tras deshacer su forma toroidal me resultaba imposible interpretar ese conjunto caótico de variables sin significado semántico. Nunca llegué a darle la importancia ni la atención que merecía, pues pensaba que era simplemente un juego intelectual entre programadores.
 
-Hace dos días sin embargo me obsesioné con el tema, y tras unas tres tardes de álgebra lineal y Python, vi que conceptualmente era en realidad sorprendentemente sencillo. Mi objetivo no ha sido llegar a algo si quiera remotamente similar a aquél código, sino más bien experimentar con las matemáticas involucradas desde cero. He procurado no leer absolutamente nada sobre cómo funciona la iluminación ni las proyecciones, y obviamente no ha quedado un resultado perfecto, pero ha sido una experiencia muy interesante.
+Hace dos días sin embargo me obsesioné con el tema y, tras unas tres tardes de álgebra lineal y Python, vi que era en realidad sorprendentemente sencillo. Mi objetivo no ha sido llegar a algo si quiera remotamente similar a aquél código, sino más bien experimentar con las matemáticas involucradas desde cero. He procurado no leer absolutamente nada sobre cómo funciona la iluminación ni las proyecciones, y obviamente no ha quedado un resultado perfecto, pero ha sido una experiencia muy interesante.
 
 # 1. Objetivo
 
@@ -23,8 +23,8 @@ Después, escribiremos el código respectivo en Python y finalmente lo transferi
 
 Las ecuaciones paramétricas que describen a un toro centrado en el eje z son las siguientes:
 
-$$x = \cos(u) * (R + r \cos(v))$$
-$$y = \sin(u) * (R + r \cos(v))$$
+$$x = \cos(u) (R + r \cos(v))$$
+$$y = \sin(u) (R + r \cos(v))$$
 $$z = r \sin(v)$$
 
 _(Inicialmente busqué estas ecuaciones, pero después me di cuenta de que son el resultado de aplicar una matriz de rotación a una circunferencia desfasada del origen. No es importante, pero me dio una grata sorpresa)_
@@ -34,7 +34,7 @@ _(Inicialmente busqué estas ecuaciones, pero después me di cuenta de que son e
 Transferir esto a código es trivial. Dentro de la clase `Torus` tenemos el siguiente método:
 
 ~~~~py
-Punto del Toro
+class Torus
 def point_at(self, u, v):
 	x = np.cos(u) * (self.R + self.r * np.cos(v))
 	y = np.sin(u) * (self.R + self.r * np.cos(v))
@@ -69,17 +69,17 @@ En esencia, si un rayo de luz impacta perpendicularmente sobre una superficie, e
 
 Un sinónimo a esto es preguntarse cómo de alineados están el vector normal a la superficie con el vector desde la fuente de luz hasta la superficie. (Figura 2)
 
-![(Figura 2)](/static/articles_media/donut/light_source.png)
+![(Figura 2) Cuanto menor sea el ángulo formado entre $N$ y $L-P$, mayor será el valor de brillo de ese punto.](/static/articles_media/donut/light_source.png)
 
-La operación por excelencia para hallar cómo de alineados están dos vectores es el producto escalar, y para obtener valores de brillo dentro del rango del 0 al 1, debemos normalizar antes los vectores.
+La operación por excelencia para hallar cómo de alineados están dos vectores es el producto escalar, y para obtener valores de brillo que estén entre 0 y 1 (incluídos), debemos normalizar antes los vectores.
 
 $$\vec{V} = L - P$$
 $$\vec{v} = \frac{\vec{V}}{\mid \vec{V} \mid}$$
-$$\textrm{brightness} = \vec{v} \cdot \vec{N}$$
+$$\textrm{brillo} = \vec{v} \cdot \vec{N}$$
 
-Solo nos queda obtener la normal a la superficie de un punto del toro. Si imaginamos desplazarnos un pequeño paso en u (es decir, $\textrm{toro}(u + du, v)$), estaremos en un nuevo punto. Cabe notar que si damos el mismo paso pero en beta (es decir, $\textrm{toro}(u, v + dv)$), nos moveremos perpendicularmente respecto de la dirección anterior. Esto es valioso, pues con ambas direcciones definimos un plano tangente a la superficie del toro, y obtener la normal de este plano es sencillo.
+Solo nos queda obtener la normal a la superficie de un punto del toro. Si imaginamos desplazarnos un pequeño paso en $u$ (es decir, $\textrm{toro}(u + du, v)$), estaremos en un nuevo punto. Cabe notar que si damos el mismo paso pero en $v$ (es decir, $\textrm{toro}(u, v + dv)$), nos moveremos perpendicularmente respecto de la dirección anterior. Esto es valioso, pues con ambas direcciones definimos un plano tangente a la superficie del toro, y obtener la normal de este plano es sencillo.
 
-Antes de ello podemos formalizar a qué nos referimos al decir "un pequeño paso". Lo que en realidad estamos diciendo es tomar las derivadas de las ecuaciones paramétricas respecto de alpha y de beta en todas las coordenadas, es decir:
+Antes de hacerlo podemos formalizar a qué nos referimos al decir "un pequeño paso". Lo que en realidad estamos haciendo es calcular las derivadas de las ecuaciones paramétricas respecto de $u$ y de $v$ en todas las coordenadas, es decir:
 
 $$\frac{dx}{du} = \frac{d}{du}(\cos(u)(R + r\cos(v))$$
 $$\frac{dy}{du} = \frac{d}{du}(\sin(u)(R + r\cos(v)))$$
@@ -89,14 +89,16 @@ $$\frac{dx}{dv} = \frac{d}{dv}(\cos(u)(R + r\cos(v))$$
 $$\frac{dy}{dv} = \frac{d}{dv}(\sin(u)(R + r\cos(v)))$$
 $$\frac{dz}{dv} = \frac{d}{dv}(r\sin(v))$$
 
-Este conjunto nos dará dos vectores, llamémoslos $\frac{d\vec{V}}{du}$ y $\frac{d\vec{V}}{dv}$. Como hemos dicho, estos vectores son perpendiculares y pertenecen al plano tangente a la superficie del donut en ese punto, por lo que su producto vectorial nos dará otro vector perpendicular a ambos. ¿Cómo decidimos en qué orden realizar este producto? Sinceramente no he encontrado un razonamiento para esta pregunta, así que he probado las dos formas y me he quedado con la que me diera un resultado coherente.
+Este conjunto nos dará dos vectores, llamémoslos $\frac{d\vec{V}}{du}$ y $\frac{d\vec{V}}{dv}$. Como hemos dicho, estos vectores son ortogonales entre sí y pertenecen al plano tangente a la superficie del donut en ese punto, por lo que su producto vectorial nos dará otro vector perpendicular a ambos.
+
+¿Cómo decidimos en qué orden realizar este producto? Sinceramente no he encontrado un razonamiento para esta pregunta, así que he probado las dos formas y me he quedado con la que me diera un resultado coherente, en este caso:
 
 $$\vec{N} = \frac{d\vec{V}}{dv} \times \frac{d\vec{V}}{du}$$
 
 La función resultante que también normaliza los vectores es:
 
 ~~~py
-Normal
+class Torus
 def normal_at(self, u, v):
 	dV_du = np.array([-np.sin(u)*(torus.R + torus.r * np.cos(v)),
 						np.cos(u)*(torus.R + torus.r * np.cos(v)),
@@ -109,9 +111,7 @@ def normal_at(self, u, v):
 	return normal
 ~~~
 
-Ahora sí, podemos calcular el brillo de cualquier punto. Solo necesitamos crear un vector `d` desde el punto hasta la fuente de luz. Habiéndolos normalizado, medir cómo de alineados están `d` y la normal a la superficie del toro se puede hacer realizando su producto escalar. El valor resultante será 0 si son perpendiculares, un número negativo si están alineados en distintas direcciones, y un valor positivo si lo están en la misma dirección.
-
-Un valor negativo significa que la superficie y la fuente de luz se "dan la espalda", así que lo interpretaremos como brillo nulo. La función resultante es la siguiente:
+Al hallar el producto escalar $\vec{v} \cdot \vec{N}$, podemos obtener valores negativos, que simbolizarían que la superficie "da la espalda" a la fuente de luz, por ello interpretamos valores menores a cero como nulos. La función resultante es la siguiente:
 
 ~~~py
 Brightness
@@ -129,7 +129,7 @@ def brightness_at(torus, u, v, rotation_matrix, light_source):
 		return brightness
 ~~~
 
-# 4. La proyección
+# 5. La proyección
 
 Dado un plano y un punto, la proyección del punto sobre el plano consistirá en moverlo perpendicular al plano hasta acabar sobre él. Para averiguar la distancia del punto al plano podemos crear un vector $\vec{v}$ que vaya del origen del plano hasta el punto deseado y hacer su producto escalar con la normal del plano. La proyección entonces será restar al punto la normal al plano escalada por la distancia. Esto consigue un movimiento perpendicular que lo deja exactamente sobre el plano.
 
@@ -143,12 +143,12 @@ def project(self, point):
 	return projected_point
 ~~~
 
-# 5. La terminal
+# 6. La terminal
 
 En primer lugar estableceremos como sistema de referencia el origen del plano:
 
 ~~~py
-Coords
+class Plane
 def relative_coords(self, point):
 	return point - self.Origin
 ~~~
@@ -172,7 +172,7 @@ projected_point = plane.relative_coords(projected_point)
 Ahora el procedimiento es obvio. Tomamos el brillo y le asignamos un caracter en una lista que represente cada posición en la terminal.
 
 ~~~py
-Brightness	
+def main()	
 brightness = brightness_at(torus, u, v, rotation_matrix, light_source)
 character = brightness_to_character(brightness)
 screen[row][col] = character
@@ -205,3 +205,5 @@ Sin embargo este código es demasiado largo para darle forma de donut, entonces 
 Con este código reducido no queda más que eliminar los espacios innecesarios y moldear el código como si fuese un donut. Esto lo hice a ojo de buen cubero (no es necesario sofisticarlo todo). Para llenar los huecos utilicé unos cuantos comentarios, [et voilá](https://github.com/erikucenik/donut/blob/master/donut_shaped_c_code_that_generates_a_spinning_donut.c).
 
 ![*Habemus donut.*](/static/articles_media/donut/donut.png)
+
+![*Fin.*](/static/articles_media/donut/donut.gif)
