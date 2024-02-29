@@ -1,4 +1,5 @@
 import subprocess
+import html
 from xml.dom import minidom
 
 def convert_iframes(domtree):
@@ -142,6 +143,7 @@ def create_code_block(domtree, code_element):
     codeblock_window_buttons.setAttribute("src", "/static/media/window_buttons.png")
 
     [filename, code] = code_element.firstChild.toxml().split('\n', 1)
+    code = html.unescape(code)
     code_element.firstChild.replaceWholeText(code)
     filename_node = domtree.createTextNode(filename)
     codeblock_window_name = domtree.createElement("p")
