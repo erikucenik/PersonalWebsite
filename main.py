@@ -70,3 +70,6 @@ async def article(request: Request, article_name):
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon():
     return FileResponse("./static/favicon.ico")
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)

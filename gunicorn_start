@@ -10,12 +10,11 @@ LOG_LEVEL=error
 
 mkdir -p $DIR/run
 source $VENV
-exec gunicorn main:app \
+exec gunicorn wsgi:app \
 	--name $NAME \
 	--workers $WORKERS \
 	--worker-class $WORKER_CLASS \
 	--user=$USER \
-#	--group=$GROUP \
 	--bind=$BIND \
 	--log-level=$LOG_LEVEL \
 	--log-file=-
