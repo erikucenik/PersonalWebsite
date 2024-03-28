@@ -12,3 +12,5 @@ When running `main.py`, the Markdown articles are converted into HTML content th
 
 - Pandoc
 - requirements.txt for pip
+
+Then just `chmod u+x gunicorn_start` and `./gunicorn_start`
