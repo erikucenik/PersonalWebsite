@@ -1,4 +1,4 @@
 function copyMailAddress() {
-	navigator.clipboard.writeText("eriklazaroucenik@gmail.com");
+	navigator.clipboard.writeText("contact@erikucenik.com");
 	alert("Mail address copied to clipboard.");
 }
