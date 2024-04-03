@@ -3,7 +3,7 @@ title: Código con forma de donut que produce un donut.
 subtitle: Código con forma de donut que produce un donut tridimensional en rotación.
 ---
 
-Hay una imagen que ha rondado mi cabeza desde que la vi hace años. ["Donut-shaped C code that generates a 3D spinning donut"](https://www.youtube.com/watch?v=DEqXNfs_HhY) fue, si no me equivoco, el vídeo donde la vi por primera vez. Durante mucho tiempo esta pieza de código me antojaba mágica. Incluso tras deshacer su forma toroidal me resultaba imposible interpretar ese conjunto caótico de variables sin significado semántico. Nunca llegué a darle la importancia ni la atención que merecía, pues pensaba que era simplemente un juego intelectual entre programadores.
+Hay una imagen que ha rondado mi cabeza desde que la vi hace años. [«Donut-shaped C code that generates a 3D spinning donut»](https://www.youtube.com/watch?v=DEqXNfs_HhY) fue, si no me equivoco, el vídeo donde la vi por primera vez. Durante mucho tiempo esta pieza de código se me antojaba mágica. Incluso tras deshacer su forma toroidal me resultaba imposible interpretar ese conjunto caótico de variables sin significado semántico. Nunca llegué a darle la importancia ni la atención que merecía, pues pensaba que era simplemente un juego intelectual entre programadores.
 
 Hace dos días sin embargo me obsesioné con el tema y, tras unas tres tardes de álgebra lineal y Python, vi que era en realidad sorprendentemente sencillo. Mi objetivo no ha sido llegar a algo si quiera remotamente similar a aquél código, sino más bien experimentar con las matemáticas involucradas desde cero. He procurado no leer absolutamente nada sobre cómo funciona la iluminación ni las proyecciones, y obviamente no ha quedado un resultado perfecto, pero ha sido una experiencia muy interesante.
 
@@ -65,7 +65,7 @@ $$y(\theta) = \cos(\theta)$$
 
 Determinar el brillo de un punto del toro sería extremadamente sencillo de no ser por la existencia de sombras. Como el plan es resolver esto rápidamente y sin consultar recursos externos, ignoraremos este problema.
 
-En esencia, si un rayo de luz impacta perpendicularmente sobre una superficie, esta alcanzará su luminosidad máxima. Cuanto más "inclinado" esté este ángulo, más oscura será la superficie.
+En esencia, si un rayo de luz impacta perpendicularmente sobre una superficie, esta alcanzará su luminosidad máxima. Cuanto más abierto esté este ángulo, más oscura será la superficie.
 
 Un sinónimo a esto es preguntarse cómo de alineados están el vector normal a la superficie con el vector desde la fuente de luz hasta la superficie. (Figura 2)
 
@@ -142,6 +142,8 @@ def project(self, point):
 
 	return projected_point
 ~~~
+
+*(Esta NO es la manera estándar de proyectar elementos sobre una pantalla. Nuevamente recalco que esto solo es un pasatiempo y nada profesional)*
 
 # 6. La terminal
 
