@@ -1,6 +1,6 @@
 ---
-title: Ode to Donut shaped code that produces a 3D spinning donut.
-subtitle: After a long time, I finally grasp this code.
+title: The Donut Code spinning Donut.
+subtitle: A recreation of a code snippet that bugged me.
 ---
 
 There has been an image in my mind for several years since I first saw it. ["Donut-shaped C code that generates a 3D spinning donut"](https://www.youtube.com/watch?v=DEqXNfs_HhY) was, if I'm not mistaken, the video where I first saw it. For a long time this piece of code seemed magical to me. Even after unpacking it I was uncapable of decyphering that chaotic mess of variables lacking semantic meaning. I never gave it the importance nor the attention it deserved, as I thought of it as no more than intellectual foreplay among programmers.
