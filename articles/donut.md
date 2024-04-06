@@ -1,37 +1,37 @@
 ---
-title: Código con forma de donut que produce un donut.
-subtitle: Código con forma de donut que produce un donut tridimensional en rotación.
+title: Ode to Donut shaped code that produces a 3D spinning donut.
+subtitle: After a long time, I finally grasp this code.
 ---
 
-Hay una imagen que ha rondado mi cabeza desde que la vi hace años. [«Donut-shaped C code that generates a 3D spinning donut»](https://www.youtube.com/watch?v=DEqXNfs_HhY) fue, si no me equivoco, el vídeo donde la vi por primera vez. Durante mucho tiempo esta pieza de código se me antojaba mágica. Incluso tras deshacer su forma toroidal me resultaba imposible interpretar ese conjunto caótico de variables sin significado semántico. Nunca llegué a darle la importancia ni la atención que merecía, pues pensaba que era simplemente un juego intelectual entre programadores.
+There has been an image in my mind for several years since I first saw it. ["Donut-shaped C code that generates a 3D spinning donut"](https://www.youtube.com/watch?v=DEqXNfs_HhY) was, if I'm not mistaken, the video where I first saw it. For a long time this piece of code seemed magical to me. Even after unpacking it I was uncapable of decyphering that chaotic mess of variables lacking semantic meaning. I never gave it the importance nor the attention it deserved, as I thought of it as no more than intellectual foreplay among programmers.
 
-Hace dos días sin embargo me obsesioné con el tema y, tras unas tres tardes de álgebra lineal y Python, vi que era en realidad sorprendentemente sencillo. Mi objetivo no ha sido llegar a algo si quiera remotamente similar a aquél código, sino más bien experimentar con las matemáticas involucradas desde cero. He procurado no leer absolutamente nada sobre cómo funciona la iluminación ni las proyecciones, y obviamente no ha quedado un resultado perfecto, pero ha sido una experiencia muy interesante.
+However, some days ago I became obsessed with the topic and, after some afternoons filled with linear algebra and Python, I discovered that it was in fact something quite simple. My objective wasn't to arrive at something even remotely close to that code, but rather to experiment with the math involved from the ground up. I've been careful not to read absolutely anything about how lightning, projections or whatever works. As one would expect, the results haven't been perfect, but it was an interesting experience.
 
-# 1. Objetivo
+# 1. The Objective
 
-El objetivo final es sencillo: mostrar un donut tridimensional bailando en la terminal. Atacar un problema así partiendo desde la perspectiva de los algoritmos tiende a resultar en código enrevesado o ineficiente, así que vamos a trabajar como si los ordenadores no existiesen - con matemáticas. Podemos descomponer el problema en otros cinco bastante más sencillos:
+The final goal is simple: to show a 3D donut dancing on screen. Attacking this problem from the perspective of algorithms tends to yield inefficient or spaghetti code, so let's forget that computers exist for a while and work with pure math. We can subdivide the problem into five more simple ones:
 
-1. Describir los puntos de un donut (o "toro") usando ecuaciones paramétricas.
-2. Hacer "bailar" al donut utilizando matrices.
-3. Asociar a cada punto del donut un valor de luminosidad.
-4. Proyectar los puntos del donut a un plano bidimensional.
-5. Pasar del plano a la terminal y mostrar el donut.
+1. Describe all of the donut's (or *torus*) points using parametric equations.
+2. Make the donut "dance" using matrices.
+3. Give each point of the donut a brightness value.
+4. Project the donut's points on a 2D plane.
+5. Go from the plane to the terminal and show the donut on screen.
 
-Después, escribiremos el código respectivo en Python y finalmente lo transferiremos a C, donde lo reduciremos a su mínima expresión y le daremos forma de donut.
+After solving all of that, we will write the corresponding code in Python and transfer it to C, where we will reduce it to its minimum expression and give it the shape of a donut.
 
-# 2. El donut
+# 2. The Donut
 
-Las ecuaciones paramétricas que describen a un toro centrado en el eje z son las siguientes:
+The parametric equations describing a torus centered along the z axis are the following:
 
 $$x = \cos(u) (R + r \cos(v))$$
 $$y = \sin(u) (R + r \cos(v))$$
 $$z = r \sin(v)$$
 
-_(Inicialmente busqué estas ecuaciones, pero después me di cuenta de que son el resultado de aplicar una matriz de rotación a una circunferencia desfasada del origen. No es importante, pero me dio una grata sorpresa)_
+_(In the beginning I looked up these equations, but after a while I realized that they are the result of applying a rotation matrix on a circunference shifted from the origin. It's not really important, but I think it's cool)_
 
-![(Figura 1) $u$ y $v$ describiendo los puntos del toro.](https://web.maths.unsw.edu.au/~rsw/Torus/torus1.jpg)
+![(Figure 1) $u$ and $v$ describing points on the torus.](https://web.maths.unsw.edu.au/~rsw/Torus/torus1.jpg)
 
-Transferir esto a código es trivial. Dentro de la clase `Torus` tenemos el siguiente método:
+Transferring this to code is trivial. Inside the class `Torus` we have the following method:
 
 ~~~~py
 class Torus
@@ -43,11 +43,11 @@ def point_at(self, u, v):
 	return np.array([x, y, z])
 ~~~~
 
-En primera instancia podría resultar arbitrario centrar el toro en torno al eje Z, sin embargo cuando apliquemos las rotaciones esto no influirá.
+It could seem arbitrary to center it on the z axis, however we are going to spin everything when we apply the rotation matrices, so it won't be important.
 
-# 3. El baile
+# 3. The Dance
 
-Dado cualquier punto del donut, podemos aplicarle transformaciones lineales a través de matrices. No nos interesa nada demasiado sofisticado, así que con unas rotaciones sencillas bastará. El ángulo $\theta$ irá variando para generar el efecto de movimiento.
+Given any of the donut's points, we can apply linear transformations to it through matrices. We don't need anything fancy, so some simple rotations should do the trick. The angle $\theta$ will vary to convey movement.
 
 $$
 \begin{pmatrix}
@@ -57,29 +57,30 @@ $$
 \end{pmatrix}
 $$
 
-También podemos mover el donut de arriba a abajo muy ligeramente:
+We can also move the donut up and down very slightly:
 
 $$y(\theta) = \cos(\theta)$$
 
-# 4. La luz
+# 4. The Light
 
-Determinar el brillo de un punto del toro sería extremadamente sencillo de no ser por la existencia de sombras. Como el plan es resolver esto rápidamente y sin consultar recursos externos, ignoraremos este problema.
+Determining a point's brightness would be extremely simple if only shadows didn't exist. As it was my intention to finish this quick and without any external resource, we will simply ignore this problem.
 
-En esencia, si un rayo de luz impacta perpendicularmente sobre una superficie, esta alcanzará su luminosidad máxima. Cuanto más abierto esté este ángulo, más oscura será la superficie.
+Basically, if a beam of light hits a surface perpendicularly, the point where it lands will reach its maximum brightness. The greater the angle, the darker the surface.
 
-Un sinónimo a esto es preguntarse cómo de alineados están el vector normal a la superficie con el vector desde la fuente de luz hasta la superficie. (Figura 2)
+We can ask the same question by looking at how aligned is the normal to the surface to the vector that goes from the light source to the surface (bit of a mouthful, I know). (Figure 2)
 
-![(Figura 2) Cuanto menor sea el ángulo formado entre $N$ y $L-P$, mayor será el valor de brillo de ese punto.](/static/articles_media/donut/light_source.png)
 
-La operación por excelencia para hallar cómo de alineados están dos vectores es el producto escalar, y para obtener valores de brillo que estén entre 0 y 1 (incluídos), debemos normalizar antes los vectores.
+![(Figura 2) The smaller the angle formed between $N$ and $L-P$, the bigger the brightness at that point.](/static/articles_media/donut/light_source.png)
+
+The operation to find out how aligned are two vectors is the scalar product, and to only get values from 0 to 1 (included) we have to previously normalize both vectors.
 
 $$\vec{V} = L - P$$
 $$\vec{v} = \frac{\vec{V}}{\mid \vec{V} \mid}$$
-$$\textrm{brillo} = \vec{v} \cdot \vec{N}$$
+$$\textrm{brightness} = \vec{v} \cdot \vec{N}$$
 
-Solo nos queda obtener la normal a la superficie de un punto del toro. Si imaginamos desplazarnos un pequeño paso en $u$ (es decir, $\textrm{toro}(u + du, v)$), estaremos en un nuevo punto. Cabe notar que si damos el mismo paso pero en $v$ (es decir, $\textrm{toro}(u, v + dv)$), nos moveremos perpendicularmente respecto de la dirección anterior. Esto es valioso, pues con ambas direcciones definimos un plano tangente a la superficie del toro, y obtener la normal de este plano es sencillo.
+Now we only have to get the normal to the surface of the torus on a given point. If we imagine taking a small step along $u$ (in other words, $\textrm{torus}(u + du, v)$), we'll end up on a new point. It's worth noting that if we take the same step along $v$ (in other words, $\textrm{torus}(u, v + dv)$), we'll have moved perpendicularly to the previous direction. This is useful, as we can define the plane tangent to the torus' surface at that point using both vectors. Getting the normal to that plane is easy.
 
-Antes de hacerlo podemos formalizar a qué nos referimos al decir "un pequeño paso". Lo que en realidad estamos haciendo es calcular las derivadas de las ecuaciones paramétricas respecto de $u$ y de $v$ en todas las coordenadas, es decir:
+Before doing that though, let's formalize what we mean when saying "a small step". What we are really doing is calculate the derivatives to the parametric equations with respect to $u$ and $v$ in all coordinates, that is:
 
 $$\frac{dx}{du} = \frac{d}{du}(\cos(u)(R + r\cos(v))$$
 $$\frac{dy}{du} = \frac{d}{du}(\sin(u)(R + r\cos(v)))$$
@@ -89,13 +90,13 @@ $$\frac{dx}{dv} = \frac{d}{dv}(\cos(u)(R + r\cos(v))$$
 $$\frac{dy}{dv} = \frac{d}{dv}(\sin(u)(R + r\cos(v)))$$
 $$\frac{dz}{dv} = \frac{d}{dv}(r\sin(v))$$
 
-Este conjunto nos dará dos vectores, llamémoslos $\frac{d\vec{V}}{du}$ y $\frac{d\vec{V}}{dv}$. Como hemos dicho, estos vectores son ortogonales entre sí y pertenecen al plano tangente a la superficie del donut en ese punto, por lo que su producto vectorial nos dará otro vector perpendicular a ambos.
+We can form two vectors out of this set of equations, let's call them $\frac{d\vec{V}}{du}$ and $\frac{d\vec{V}}{dv}$. As we've said, these vectors are ortogonal and lie on the plane tangent to the torus' surface at that point, so their cross product will yield another vector normal to that surface.
 
-¿Cómo decidimos en qué orden realizar este producto? Sinceramente no he encontrado un razonamiento para esta pregunta, así que he probado las dos formas y me he quedado con la que me diera un resultado coherente, en este caso:
+How do we decide the order of the terms in this product? We could reason through it, but really it's a 50/50 chance, so we can pick at random and see how it looks, in this case:
 
 $$\vec{N} = \frac{d\vec{V}}{dv} \times \frac{d\vec{V}}{du}$$
 
-La función resultante que también normaliza los vectores es:
+The resulting function which also normalizes all vectors is:
 
 ~~~py
 class Torus
@@ -111,7 +112,7 @@ def normal_at(self, u, v):
 	return normal
 ~~~
 
-Al hallar el producto escalar $\vec{v} \cdot \vec{N}$, podemos obtener valores negativos, que simbolizarían que la superficie "da la espalda" a la fuente de luz, por ello interpretamos valores menores a cero como nulos. La función resultante es la siguiente:
+When doing the scalar product $\vec{v} \cdot \vec{N}$, we can get negative values, which simbolize that the surface is "giving its back" to the light source, hence we can interpret those as zero. Again, the resulting function is:
 
 ~~~py
 Brightness
@@ -129,9 +130,9 @@ def brightness_at(torus, u, v, rotation_matrix, light_source):
 		return brightness
 ~~~
 
-# 5. La proyección
+# 5. The Projection
 
-Dado un plano y un punto, la proyección del punto sobre el plano consistirá en moverlo perpendicular al plano hasta acabar sobre él. Para averiguar la distancia del punto al plano podemos crear un vector $\vec{v}$ que vaya del origen del plano hasta el punto deseado y hacer su producto escalar con la normal del plano. La proyección entonces será restar al punto la normal al plano escalada por la distancia. Esto consigue un movimiento perpendicular que lo deja exactamente sobre el plano.
+Given a plane and a point outside that plane, the projection of that point on the plane will be the point moved along a line perpendicular to the plane until reaching it. To find out the distance from the point to the plane we can create a vector $\vec{v}$ that goes from the origin of the plane to the desired point and take its scalar product with the normal of the plane. The projection will consist on subtracting the normal to the plane scaled by the distance to the point. This achieves a perpendicular movement that ends up with the point lying at the plane.
 
 ~~~py
 class Plane
@@ -143,11 +144,11 @@ def project(self, point):
 	return projected_point
 ~~~
 
-*(Esta NO es la manera estándar de proyectar elementos sobre una pantalla. Nuevamente recalco que esto solo es un pasatiempo y nada profesional)*
+*(This is NOT the standard way of projecting to a screen. Then again, I was doing this as intelectul foreplay and not as something professional)*
 
-# 6. La terminal
+# 6. The Terminal
 
-En primer lugar estableceremos como sistema de referencia el origen del plano:
+Let's first establish the origin of the plane as our frame of reference.
 
 ~~~py
 class Plane
@@ -155,7 +156,7 @@ def relative_coords(self, point):
 	return point - self.Origin
 ~~~
 
-Nuestro sistema de referencia tiene al plano en el origen. Sin embargo el origen de coordenadas de la terminal está en la esquina superior izquierda, y avanza de arriba a abajo. Conociendo la cantidad de filas y columnas de la terminal, esto no es complicación:
+Our frame of reference is now centered at the plane's origin. However the origin of the terminal is located at its top-left corner, and its coordinates increase from left to right and from top to bottom. If we know how many rows and columns our terminal has (which we know because we have predetermined it), this isn't a problem:
 
 ~~~py
 Terminal Coordinates
@@ -171,7 +172,7 @@ projected_point = plane.relative_coords(projected_point)
 (row, col) = plane_coords_to_terminal_coords(projected_point)
 ~~~
 
-Ahora el procedimiento es obvio. Tomamos el brillo y le asignamos un caracter en una lista que represente cada posición en la terminal.
+What follows is obvious. We take that brightness value and we assign a character to a list that represents each coordinate in the terminal.
 
 ~~~py
 def main()	
@@ -180,7 +181,7 @@ character = brightness_to_character(brightness)
 screen[row][col] = character
 ~~~
 
-La función que asocie un caracter a cada brillo puede decidirse libremente, pero me voy a remitir al conjunto de caracteres original.
+The function association a character to each brightness value can be freely chosen, but I will stick to the original set of characters.
 
 ~~~py
 Bright2Char
@@ -192,20 +193,20 @@ def brightness_to_character(brightness):
 	return characters[index]
 ~~~
 
-En realidad hay un último detalle a considerar. Distintos puntos del donut con distintas luminosidades pueden ser proyectados al mismo lugar en la terminal, determinando el resultado en función del orden en que hayan sido escritos y no en la figura tridimensional.
+Actually there's a last thing to consider. Different point on the donut with different brightness values can project to the same spot on the terminal, meaning the output on the terminal will pick the latest projected value and not the one that makes sense tridimensionally.
 
-Como avisé al principio, no nos centraremos en perfeccionar este dato, aunque una solución que produce un resultado bastante decente es simplemente quedarse con el valor de brillo más alto encontrado.
+As I said at the beginning of this article, we won't focus on perfectioning this, although picking the value with the highest brightness found yields a pretty decent result.
 
 # Resultado
 
-¡Y ya está! El código completo está disponible en mi [GitHub](https://github.com/erikucenik/donut/blob/master/donut.py). No es una joya pero es lo que tiene la improvisación. Transformado a C y reducido lo máximo posible, lo podemos amasar hasta que sea un donut y... ¡listo!
+That's it! The full code is available at my [GitHub](https://github.com/erikucenik/donut/blob/master/donut.py). It's not the best, but that's what you get for improvising. When transformed to C and reduced as much as possible, it can be massaged into a donut shape.
 
-Pasarlo a C es más tedioso que difícil, puesto que no contamos con las facilidades de NumPy y Python, pero nada imposible. El [código traducido](https://github.com/erikucenik/donut/blob/master/donut.c) se encuentra también en mi GitHub. Era de esperar, pero la diferencia en velocidad fue remarcable.
+Going from Python to C is not difficult but rather tedious, as we can't use NumPy, but it's doable. The [translated code](https://github.com/erikucenik/donut/blob/master/donut.c) is also available on my GitHub. It's amazing how quick it is in comparison.
 
-Sin embargo este código es demasiado largo para darle forma de donut, entonces es necesario simplificarlo. Es aquí donde hice una pequeña trampa, pues no solo me dediqué a agrupar y a cambiar nombres, sino que además recogí muchas funciones en el archivo [donut.h](https://github.com/erikucenik/donut/blob/master/donut.h).
+However this code is too long to be shaped like a donut (or at least to an aesthetically pleasing one), so we must simplify it further. This is when I cheated a little, as I didn't only cram together everything I could, but I also put a lot of functions in the file [donut](https://github.com/erikucenik/donut/blob/master/donut.h). I don't think this is too bad, as we could have used an external linear algebra library in the first place.
 
-Con este código reducido no queda más que eliminar los espacios innecesarios y moldear el código como si fuese un donut. Esto lo hice a ojo de buen cubero (no es necesario sofisticarlo todo). Para llenar los huecos utilicé unos cuantos comentarios, [et voilá](https://github.com/erikucenik/donut/blob/master/donut_shaped_c_code_that_generates_a_spinning_donut.c).
+With this smaller code we only have to eliminate unnecesary spacing and give the code the desired shape. I did this by eye (you don't have to use fancy techniques for everything). To fill in the gaps I used some comments, [et voilá](https://github.com/erikucenik/donut/blob/master/donut_shaped_c_code_that_generates_a_spinning_donut.c).
 
 ![*Habemus donut.*](/static/articles_media/donut/donut.png)
 
-![*Fin.*](/static/articles_media/donut/donut.gif)
+![*The End.*](/static/articles_media/donut/donut.gif)
