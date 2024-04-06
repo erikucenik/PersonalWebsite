@@ -197,7 +197,7 @@ Actually there's a last thing to consider. Different point on the donut with dif
 
 As I said at the beginning of this article, we won't focus on perfectioning this, although picking the value with the highest brightness found yields a pretty decent result.
 
-# Resultado
+# Result
 
 That's it! The full code is available at my [GitHub](https://github.com/erikucenik/donut/blob/master/donut.py). It's not the best, but that's what you get for improvising. When transformed to C and reduced as much as possible, it can be massaged into a donut shape.
 
