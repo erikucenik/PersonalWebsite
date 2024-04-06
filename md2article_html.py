@@ -50,14 +50,15 @@ def convert_downloads(domtree):
             download_img.setAttribute("src", "/static/media/cloud.png")
             download_section.appendChild(download_img)
 
-            filename = link.getAttribute("href").split("/")[-1]
+            filepath = link.getAttribute("href")
+            filename = filepath.split("/")[-1]
             download_p = domtree.createElement("p")
             download_p.setAttribute("class", "download__filename")
             download_p.appendChild(domtree.createTextNode(filename))
             download_section.appendChild(download_p)
 
             download_a = domtree.createElement("a")
-            download_a.setAttribute("href", f"/static/articles_media/{filename}")
+            download_a.setAttribute("href", f"/static/articles_media/{filepath}")
             download_a.setAttribute("class", "download__square")
             download_a.setAttribute("download", "")
             download_icon = domtree.createElement("img")
