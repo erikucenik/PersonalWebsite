@@ -23,3 +23,5 @@ In my journey I would have to underline the importance of several sources like:
 - Antonio Escohotado's figure in general has had a huge role in my writing process. I haven't actually taken much information from his books, but his spirit definitely permeated my views and thoughts on the topic. Robert Sapolsky is another man I admire for similar reasons.
 
 Anyways, I could keep rambling about [Huxley's Death Trip](https://www.youtube.com/watch?v=5BzvC2t_LeI) or [Alexander Shulgin's psychedelic experiences](https://en.wikipedia.org/wiki/PiHKAL), but I think you get the gist of it. Onto other things.
+
+*19/03/2024*
