@@ -1,6 +1,6 @@
 # My Personal Website
 
-This is the source code for my FastAPI website, where I store my articles.
+This is the source code for [my website](https://erikucenik.com/), where I store my articles.
 
 # How it works
 
