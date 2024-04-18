@@ -283,7 +283,7 @@ You've seen the code, you've seen the problems, but at least I think you have go
 
 ![(Figure 4) Bitcoin Cash. A hard fork of Bitcoin.](/static/articles_media/ucenikoin/btc_cash.png)
 
-- Mind you, forking isn't some kid-in-their-dad's-garage practice which just produces an "alt-coin": the [Ethereum](https://ethereum.org/en/) network was hacked because of one of its flaws, which lead to the theft of a lot of ETH. In this case, the **majority** of the network decided to make a hardfork to revert the theft. The hardfork is now the actual Ethereum blockchain, whereas the original, chain is known as [Ethereum Classic](https://ethereumclassic.org/).
+- Mind you, forking isn't some kid-in-their-dad's-garage practice which just produces an "alt-coin": the [Ethereum](https://ethereum.org/en/) network was hacked once, which lead to the theft of a lot of ETH. In this case, the **majority** of the network decided to make a hardfork to revert the theft. The hardfork is now the actual Ethereum blockchain, whereas the original chain is now known as [Ethereum Classic](https://ethereumclassic.org/).
 
 ![(Figure 5) Ethereum, the hardfork that forgot a robbery.](/static/articles_media/ucenikoin/eth_classic.png)
 
