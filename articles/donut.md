@@ -7,6 +7,8 @@ There has been an image in my mind for several years since I first saw it. ["Don
 
 However, some days ago I became obsessed with the topic and, after some afternoons filled with linear algebra and Python, I discovered that it was in fact something quite simple. My objective wasn't to arrive at something even remotely close to that code, but rather to experiment with the math involved from the ground up. I've been careful not to read absolutely anything about how lightning, projections or whatever works. As one would expect, the results haven't been perfect, but it was an interesting experience.
 
+![(Figure 1) The code in question.](/static/articles_media/donut/original.png)
+
 # 1. The Objective
 
 The final goal is simple: to show a 3D donut dancing on screen. Attacking this problem from the perspective of algorithms tends to yield inefficient or spaghetti code, so let's forget that computers exist for a while and work with pure math. We can subdivide the problem into five more simple ones:
@@ -29,7 +31,7 @@ $$z = r \sin(v)$$
 
 _(In the beginning I looked up these equations, but after a while I realized that they are the result of applying a rotation matrix on a circunference shifted from the origin. It's not really important, but I think it's cool)_
 
-![(Figure 1) $u$ and $v$ describing points on the torus.](https://web.maths.unsw.edu.au/~rsw/Torus/torus1.jpg)
+![(Figure 2) $u$ and $v$ describing points on the torus.](https://web.maths.unsw.edu.au/~rsw/Torus/torus1.jpg)
 
 Transferring this to code is trivial. Inside the class `Torus` we have the following method:
 
@@ -67,10 +69,9 @@ Determining a point's brightness would be extremely simple if only shadows didn'
 
 Basically, if a beam of light hits a surface perpendicularly, the point where it lands will reach its maximum brightness. The greater the angle, the darker the surface.
 
-We can ask the same question by looking at how aligned is the normal to the surface to the vector that goes from the light source to the surface (bit of a mouthful, I know). (Figure 2)
+We can ask the same question by looking at how aligned is the normal to the surface to the vector that goes from the light source to the surface (bit of a mouthful, I know). (Figure 3)
 
-
-![(Figura 2) The smaller the angle formed between $N$ and $L-P$, the bigger the brightness at that point.](/static/articles_media/donut/light_source.png)
+![(Figure 3) The smaller the angle formed between $N$ and $L-P$, the bigger the brightness at that point.](/static/articles_media/donut/light_source.png)
 
 The operation to find out how aligned are two vectors is the scalar product, and to only get values from 0 to 1 (included) we have to previously normalize both vectors.
 
