@@ -1,6 +1,7 @@
 ---
 title: About this website.
 subtitle: And its creation.
+path: https://erikucenik.com/static/articles_media/about_this/rpi.png
 ---
 
 I think having a website is pretty much a requirement for the modern world. Not as a technical display nor to get to be known, but rather as an index for your identity. I know perfectly well who I am and what I do and people around me also know, but if a stranger were to get interested in me, he wouldn't be able to find much if not for this website.

@@ -1,6 +1,7 @@
 ---
 title: LSD, death and resurrection.
 subtitle: A highschool project I made about the history and pharmacology of LSD.
+thumbnail: https://cdn.zendalibros.com/wp-content/uploads/2024/01/albert-hoffman-lsd-scaled.jpg
 ---
 
 There was this thing in my highschool where you had to spend a year or two researching about some topic of your choice and write a 30 page essay about it. So me being myself, I immediately came up with a series of dumb ideas to toe the line between good and evil, like synthesizing methamphetamine from paint thinner (don't ask).

@@ -1,6 +1,7 @@
 ---
 title: UceniKoin.
 subtitle: My own cryptocurrency based on the Bitcoin whitepaper.
+thumbnail: https://i.ibb.co/BL88bCT/ucenikoin-thumbnail.png
 ---
 
 I **love** blockchain technology. It's so simple yet so elegant that I'm mad at myself for never having implemented it on my own. That has to change.
