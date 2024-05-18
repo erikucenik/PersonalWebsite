@@ -10,10 +10,21 @@ When running `main.py`, the Markdown articles are converted into HTML content th
 
 # Requirements
 
+- Docker
 - Pandoc
 - requirements.txt for pip
 
-Then just `chmod u+x gunicorn_start` and `./gunicorn_start`
+# Installation
+
+```sh
+docker network create traefik-public
+export USERNAME=name
+export PASSWORD=changethis
+export HASHED_PASSWORD=$(openssl passwd -apr1 $PASSWORD)
+
+docker-compose -f docker-compose.traefik.yml up -d
+docker-compose -f docker-compose.yml up -d
+```
 
 # Notes
 
