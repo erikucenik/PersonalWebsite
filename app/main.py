@@ -53,7 +53,8 @@ async def home(request: Request):
         article = {"path": article_path, "title": article_title, "subtitle": article_subtitle}
         articles.append(article)
 
-    return templates.TemplateResponse(request=request, name="index.html", context={ "articles": articles })
+    #return templates.TemplateResponse(request=request, name="index.html", context={ "articles": articles })
+    return templates.TemplateResponse(name="index.html", context={ "request": request, "articles": articles })
 
 @app.get("/articles/{article_name}")
 async def article(request: Request, article_name):
@@ -61,11 +62,9 @@ async def article(request: Request, article_name):
 
     with open(f"articles_html/{article_name}.html", "r") as f:
         content = f.read()
-        return templates.TemplateResponse(request=request, name="article.html", context={ "html_content": content, "article_title": title, "article_subtitle": subtitle, "article_thumbnail_url": thumbnail_url, "article_path": path })
+        #return templates.TemplateResponse(request=request, name="article.html", context={ "html_content": content, "article_title": title, "article_subtitle": subtitle, "article_thumbnail_url": thumbnail_url, "article_path": path })
+        return templates.TemplateResponse(name="article.html", context={ "request": request, "html_content": content, "article_title": title, "article_subtitle": subtitle, "article_thumbnail_url": thumbnail_url, "article_path": path })
 
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon():
     return FileResponse("./static/favicon.ico")
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
