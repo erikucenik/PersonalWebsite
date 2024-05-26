@@ -3,6 +3,8 @@ services:
   backend:
     build: ./
     restart: always
+    depends_on:
+      - mariadb
     labels:
       # Enable Traefik for this specific "backend" service
       - traefik.enable=true
@@ -29,7 +31,23 @@ services:
       # Use the public network created to be shared between Traefik and
       # any other service that needs to be publicly available with HTTPS
       - traefik-public
+      - pwnet
+
+  mariadb:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: 123
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - pwnet
 
 networks:
   traefik-public:
     external: true
+  pwnet:
+    external: false
+
+volumes:
+  dbdata:
