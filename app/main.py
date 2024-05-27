@@ -5,6 +5,7 @@ from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+from md2article_html import md2article_html
 import mariadb
 
 try:
@@ -37,15 +38,18 @@ async def main(request: Request):
 
 @app.get("/articles/{article_name}")
 async def article(request: Request, article_name):
-    # Buscar en la tabla la entrada que tiene como `endpoint` el valor article_name. 
-    # Si no existe, devolver un error y quizás una página de 404 not found.
-    # Tomar el titulo, subtitulo, contenido y fecha de creación.
-    # Convertir el contenido de markdown a HTML.
-    # Devolver todo.
-    #cur.execute(f"SELECT title,subtitle,content,date_published FROM personalwebsite.articles WHERE endpoint={article_name}")
-    #article = cur.fetchall()
-    #print(article)
-    return {"Hola": "Adios"}
+    cur.execute(f"SELECT title,subtitle,content,date_published,thumbnail,endpoint FROM personalwebsite.articles WHERE endpoint='{article_name}'")
+    article = cur.fetchall()
+
+    if not article:
+        return { "msg": "404 Article doesn't exist." }
+    else:
+        (title, subtitle, md_content, date_published, thumbnail, endpoint) = article[0]
+
+    date_published = date_published.strftime("%d/%m/%Y")
+    html_content = md2article_html(md_content)
+
+    return templates.TemplateResponse(name="article.html", context={ "request": request, "html_content": html_content, "article_title": title, "article_subtitle": subtitle, "article_thumbnail_url": thumbnail, "article_path": endpoint})
 
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon():
