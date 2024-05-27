@@ -1,9 +1,3 @@
----
-title: About this website.
-subtitle: And its creation.
-path: https://erikucenik.com/static/articles_media/about_this/rpi.png
----
-
 I think having a website is pretty much a requirement for the modern world. Not as a technical display nor to get to be known, but rather as an index for your identity. I know perfectly well who I am and what I do and people around me also know, but if a stranger were to get interested in me, he wouldn't be able to find much if not for this website.
 
 I encourage you to make your own website, it doesn't matter whether you do it with a WCMS and self host it in a Raspberry Pi or set up a sophisticated system. As long as I can type your full name and find what you've done, it's fine. If it serves as inspiration, I'll tell you how I made this website.
@@ -39,5 +33,3 @@ I used cloudflare both as a [DNS](https://en.wikipedia.org/wiki/Domain_Name_Syst
 I think everything is perfectly secure. If you wan't to try and prove me wrong, go ahead! Just please don't steal anything important if you actually manage to do it.
 
 I don't know how to end this article. Bye.
-
-*15/04/2024*

@@ -1,9 +1,3 @@
----
-title: LSD, death and resurrection.
-subtitle: A highschool project I made about the history and pharmacology of LSD.
-thumbnail: https://cdn.zendalibros.com/wp-content/uploads/2024/01/albert-hoffman-lsd-scaled.jpg
----
-
 There was this thing in my highschool where you had to spend a year or two researching about some topic of your choice and write a 30 page essay about it. So me being myself, I immediately came up with a series of dumb ideas to toe the line between good and evil, like synthesizing methamphetamine from paint thinner (don't ask).
 
 In the end these were brief enough to not make up a full document, but one of them did stick around: LSD.
@@ -61,5 +55,3 @@ In my journey I would have to underline the importance of several sources:
 - Antonio Escohotado's figure in general has had a huge role in my writing process. I haven't actually taken much information from his books, but his spirit definitely permeated my views and thoughts on the topic. Robert Sapolsky is another man I admire for similar reasons.
 
 Anyways, I could keep rambling about [Huxley's Death Trip](https://www.youtube.com/watch?v=5BzvC2t_LeI) or [Alexander Shulgin's psychedelic experiences](https://en.wikipedia.org/wiki/PiHKAL), but I think you get the gist of it. Onto other things.
-
-*19/03/2024*

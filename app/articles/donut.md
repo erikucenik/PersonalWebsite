@@ -1,9 +1,3 @@
----
-title: The Donut Code spinning Donut.
-subtitle: A recreation of a code snippet that bugged me.
-thumbnail: https://github.com/erikucenik/PersonalWebsite/blob/master/static/articles_media/donut/donut.png?raw=true
----
-
 There has been an image in my mind for several years since I first saw it. ["Donut-shaped C code that generates a 3D spinning donut"](https://www.youtube.com/watch?v=DEqXNfs_HhY) was, if I'm not mistaken, the video where I first saw it. For a long time this piece of code seemed magical to me. Even after unpacking it I was uncapable of decyphering that chaotic mess of variables lacking semantic meaning. I never gave it the importance nor the attention it deserved, as I thought of it as no more than intellectual foreplay among programmers.
 
 However, some days ago I became obsessed with the topic and, after some afternoons filled with linear algebra and Python, I discovered that it was in fact something quite simple. My objective wasn't to arrive at something even remotely close to that code, but rather to experiment with the math involved from the ground up. I've been careful not to read absolutely anything about how lightning, projections or whatever works. As one would expect, the results haven't been perfect, but it was an interesting experience.
@@ -212,5 +206,3 @@ With this smaller code we only have to eliminate unnecesary spacing and give the
 ![*Habemus donut.*](/static/articles_media/donut/donut.png)
 
 ![*The End.*](/static/articles_media/donut/donut.gif)
-
-*26/02/2024*
