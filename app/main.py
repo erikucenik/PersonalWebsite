@@ -32,8 +32,6 @@ async def main(request: Request):
     articles = cur.fetchall()
     articles = [{"title": title, "subtitle": subtitle, "path": endpoint} for (title, subtitle, endpoint) in articles]
 
-    print(articles)
-
     return templates.TemplateResponse(name="index.html", context={ "request": request, "articles": articles})
 
 @app.get("/md/{article_name}", response_class=PlainTextResponse)
@@ -56,7 +54,7 @@ async def article(request: Request, article_name):
     md_content = await article_md(request, article_name)
     html_content = md2article_html(md_content)
 
-    return templates.TemplateResponse(name="article.html", context={ "request": request, "html_content": html_content, "article_title": title, "article_subtitle": subtitle, "article_thumbnail_url": thumbnail, "article_path": endpoint})
+    return templates.TemplateResponse(name="article.html", context={ "request": request, "html_content": html_content, "title": title, "subtitle": subtitle, "thumbnail": thumbnail, "endpoint": endpoint, "date_published": date_published})
 
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon():

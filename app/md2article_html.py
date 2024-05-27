@@ -193,7 +193,6 @@ def pandoc_format_to_my_style(pandoc_output):
     return my_style_html
 
 def md2article_html(md_content):
-    #pandoc_output = "<html>\n" +  subprocess.run(["pandoc", filename, "-f", "markdown+fenced_code_blocks-auto_identifiers-smart", "-t", "html", "--mathjax", "--no-highlight"], stdout=subprocess.PIPE).stdout.decode("utf-8") + "\n</html>"
     pandoc_output = "<html>\n" + pypandoc.convert_text(md_content, 'html', format='markdown+fenced_code_Blocks-auto_identifiers-smart', extra_args=["--mathjax", "--no-highlight"]) + "\n</html>"
     article_content = pandoc_format_to_my_style(pandoc_output)
 
