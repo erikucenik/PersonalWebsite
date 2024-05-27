@@ -35,6 +35,18 @@ async def main(request: Request):
 
     return templates.TemplateResponse(name="index.html", context={ "request": request, "articles": articles})
 
+@app.get("/articles/{article_name}")
+async def article(request: Request, article_name):
+    # Buscar en la tabla la entrada que tiene como `endpoint` el valor article_name. 
+    # Si no existe, devolver un error y quizás una página de 404 not found.
+    # Tomar el titulo, subtitulo, contenido y fecha de creación.
+    # Convertir el contenido de markdown a HTML.
+    # Devolver todo.
+    #cur.execute(f"SELECT title,subtitle,content,date_published FROM personalwebsite.articles WHERE endpoint={article_name}")
+    #article = cur.fetchall()
+    #print(article)
+    return {"Hola": "Adios"}
+
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon():
     return FileResponse("./static/favicon.ico")
