@@ -28,7 +28,7 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def main(request: Request):
-    cur.execute("SELECT title,subtitle,endpoint FROM personalwebsite.articles")
+    cur.execute("SELECT title,subtitle,endpoint FROM personalwebsite.articles ORDER BY date_published DESC")
     articles = cur.fetchall()
     articles = [{"title": title, "subtitle": subtitle, "path": endpoint} for (title, subtitle, endpoint) in articles]
 

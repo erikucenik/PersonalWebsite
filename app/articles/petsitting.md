@@ -31,4 +31,3 @@ I've got some more requests coming in soon. If you're interested you can check o
 Petsitting is a great activity if you don't plan on going on vacation on summer. Not only can you make a quick buck but you also help other people who want to go on holiday but can't because of their pets. You must be aware that you are dealing with lives and loved ones, so please don't take it as a joke. Make sure you attend their needs and stay in contact with the owners.
 
 Overall, my desire for a dog has vanished. While I love animals, they are daily work and a responsibility. I prefer to petsit, not only because of the economics of it but also because it gives me the best of both worlds.
-
