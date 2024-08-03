@@ -5,3 +5,5 @@ INSERT INTO articles (title, subtitle, thumbnail, date_published, endpoint) VALU
 INSERT INTO articles (title, subtitle, thumbnail, date_published, endpoint) VALUES ("LSD, death and resurrection.", "A highschool project I made about the history and pharmacology of LSD.", "https://cdn.zendalibros.com/wp-content/uploads/2024/01/albert-hoffman-lsd-scaled.jpg", "2024-03-19", "lsd");
 
 INSERT INTO articles (title, subtitle, thumbnail, date_published, endpoint) VALUES ("UceniKoin.", "My own cryptocurrency based on the Bitcoin whitepaper.", "https://i.ibb.co/BL88bCT/ucenikoin-thumbnail.png", "2024-04-14", "ucenikoin");
+
+INSERT INTO articles (title, subtitle, thumbnail, date_published, endpoint) VALUES ("Taking Care of Dogs.", "A summer plan to satisfy my love for animals.", "https://erikucenik.com/static/articles_media/petsitting/pintxo.jpg", "2024-08-03", "petsitting");
